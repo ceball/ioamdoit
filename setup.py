@@ -11,9 +11,4 @@ setup(name = 'ioamdoit',
       license = 'MIT',
       url = 'http://github.com/ioam/ioamdoit',
       py_modules=['ioamdoit'],
-      entry_points = {
-          'doit.LOADER': [
-              'ioamdoit = ioamdoit:IOAMLoader'
-          ]
-      },
       )
