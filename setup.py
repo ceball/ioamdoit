@@ -2,9 +2,12 @@
 
 from setuptools import setup
 
+import versioneer
+
 setup(name = 'ioam-doit',
       description = 'common ioam doit tasks',
-      version = '0.1.0',
+      version = versioneer.get_version(),
+      cmdclass = versioneer.get_cmdclass(),
       license = 'MIT',
       url = 'http://github.com/ioam/ioam-doit',
       py_modules=['ioam_doit'],
