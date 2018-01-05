@@ -1,4 +1,4 @@
-A sample command plugin for [doit](http://pydoit.org).
+Common ioam doit tasks
 
 
 ## setuptools integration
@@ -7,7 +7,7 @@ If you install this module using setuptools/pip,
 `doit` will auto-load the plugin on its execution.
 
 ```
-pip install git+https://github.com/pydoit/doit-plugin-sample.git
+pip install -e .
 ```
 
 Note that in the plugin `setup.py` the entry-point group should
