@@ -10,5 +10,5 @@ setup(name = 'ioamdoit',
       cmdclass = versioneer.get_cmdclass(),
       license = 'MIT',
       url = 'http://github.com/ioam/ioamdoit',
-      py_modules=['ioamdoit'],
+      packages=['ioamdoit'],
       )
