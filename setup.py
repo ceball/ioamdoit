@@ -11,4 +11,5 @@ setup(name = 'ioamdoit',
       license = 'MIT',
       url = 'http://github.com/ioam/ioamdoit',
       packages=['ioamdoit'],
+      install_requires=['doit']
       )
