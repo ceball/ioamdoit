@@ -4,16 +4,16 @@ from setuptools import setup
 
 import versioneer
 
-setup(name = 'ioam-doit',
+setup(name = 'ioamdoit',
       description = 'common ioam doit tasks',
       version = versioneer.get_version(),
       cmdclass = versioneer.get_cmdclass(),
       license = 'MIT',
-      url = 'http://github.com/ioam/ioam-doit',
-      py_modules=['ioam_doit'],
+      url = 'http://github.com/ioam/ioamdoit',
+      py_modules=['ioamdoit'],
       entry_points = {
-          'doit.COMMAND': [
-              'plug_sample = doit_sample_cmd:SampleCmd'
+          'doit.LOADER': [
+              'ioamdoit = ioamdoit:IOAMLoader'
           ]
       },
       )
