@@ -14,7 +14,7 @@ except ImportError:
     from urllib import urlretrieve
 
 miniconda_url = {
-    "Windows": "https://repo.continuum.io/archive/Miniconda3-latest-Windows-x86_64.exe",
+    "Windows": "https://repo.continuum.io/miniconda/Miniconda3-latest-Windows-x86_64.exe",
     "Linux": "https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh",
     "Darwin": "https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh"
 }
