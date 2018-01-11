@@ -73,3 +73,6 @@ def task_create_env():
         'params': [python,env],
         'actions': ["conda create -y --name %(name)s python=%(python)s"]}
 
+
+def capture_conda_env():
+    return {'actions':["conda info","conda list","conda env export"]}
