@@ -66,6 +66,9 @@ def task_update_conda_and_conda_build():
 def task_create_env():
 
     def _create_env(env_name,path_to_recipe):
+        if path_to_recipe is None:
+            raise ValueError("Must supply path to conda recipe")
+        
         from conda_build import api
         from conda_build.environ import create_env
         from conda.cli.main_info import get_info_dict
@@ -77,8 +80,6 @@ def task_create_env():
 
     env_name = get_var('env_name','test-environment')
     path_to_recipe = get_var('conda_recipe',None)
-    if path_to_recipe is None:
-        raise ValueError("Must supply path to conda recipe")
 
     return {'actions': [(_create_env,(env_name,path_to_recipe))],
             'task_dep': ['update_conda_and_conda_build']}
