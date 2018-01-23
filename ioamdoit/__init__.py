@@ -13,6 +13,8 @@ try:
 except ImportError:
     from urllib import urlretrieve
 
+from doit import get_var
+
 miniconda_url = {
     "Windows": "https://repo.continuum.io/miniconda/Miniconda3-latest-Windows-x86_64.exe",
     "Linux": "https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh",
@@ -56,22 +58,25 @@ def task_install_miniconda():
             'START /WAIT %s'%miniconda_installer + " /S /AddToPath=0 /D=%(location)s"] if platform.system() == "Windows" else ["bash %s"%miniconda_installer + " -b -p %(location)s"]
         }
 
+
 def task_create_env():
-    python = {
-        'name':'python',
-        'long':'python',
-        'type':str,
-        'default':'3.6'}
 
-    env = {
-        'name':'name',
-        'long':'name',
-        'type':str,
-        'default':'test-environment'}
+    def _create_env(env_name,path_to_recipe):
+        from conda_build import api
+        from conda_build.environ import create_env
+        from conda.cli.main_info import get_info_dict
 
-    return {
-        'params': [python,env],
-        'actions': ["conda create -y --name %(name)s python=%(python)s"]}
+        metadata = api.render(path_to_recipe)[0][0]
+        deps = metadata.get_value('requirements/run') + metadata.get_value('test/requires') #and maybe look at what people have tried to put in extra etc
+
+        create_env(get_info_dict()['envs_dirs'][0]+"/"+env_name, deps, env='run', config=metadata.config, subdir=metadata.config.subdir)
+
+    env_name = get_var('env_name','test-environment')
+    path_to_recipe = get_var('conda_recipe',None)
+    if path_to_recipe is None:
+        raise ValueError("Must supply path to conda recipe")
+
+    return {'actions': [(_create_env,(env_name,path_to_recipe))]}
 
 
 def task_capture_conda_env():
