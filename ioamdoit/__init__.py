@@ -59,8 +59,9 @@ def task_install_miniconda():
         }
 
 
-def task_install_conda_build():
-    return {'actions':['conda install -y conda-build']}
+def task_update_conda_and_conda_build():
+    return {'actions':['conda install -y "conda-build>=3.2" "conda>=4.4"']}
+
 
 def task_create_env():
 
@@ -80,7 +81,7 @@ def task_create_env():
         raise ValueError("Must supply path to conda recipe")
 
     return {'actions': [(_create_env,(env_name,path_to_recipe))],
-            'task_dep': ['install_conda_build']}
+            'task_dep': ['update_conda_and_conda_build']}
 
 
 def task_capture_conda_env():
