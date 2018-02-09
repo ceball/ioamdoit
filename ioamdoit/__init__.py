@@ -78,4 +78,4 @@ def task_capture_conda_env():
     return {'actions':["conda info","conda list","conda env export"]}
 
 def task_develop_install():
-    return {'actions':["pip install -e ."]}
+    return {'actions':["pip install --no-deps -e ."]}
